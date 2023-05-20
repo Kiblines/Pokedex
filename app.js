@@ -7,6 +7,7 @@ let pokemons = require("./mock-pokemon");
 const app = express();
 const port = 3000;
 
+// pas besoin de next ici car morgan & serve favicon le gère en interne
 app.use(favicon(__dirname + "/favicon.ico")).use(morgan("dev"));
 
 app.get("/", (req, res) =>
