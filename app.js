@@ -1,5 +1,5 @@
 const express = require("express");
-const helper = require("./helper");
+const { success } = require("./helper");
 let pokemons = require("./mock-pokemon");
 
 const app = express();
