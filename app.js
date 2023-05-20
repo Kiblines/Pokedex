@@ -1,4 +1,5 @@
 const express = require("express");
+const helper = require("./helper");
 let pokemons = require("./mock-pokemon");
 
 const app = express();
@@ -12,7 +13,9 @@ app.get("/", (req, res) =>
 app.get("/api/pokemons/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const pokemon = pokemons.find((pokemon) => pokemon.id === id);
-  res.json(pokemon);
+  const message = "Un pokémon a bien été trouvé.";
+  //deux param le msg descriptif confirmation & les données du pokémon
+  res.json(helper.success(message, pokemon));
 });
 
 // le nouveau point de terminaison , affichant le nombre total de pokémons :
