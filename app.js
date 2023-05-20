@@ -9,20 +9,19 @@ app.get("/", (req, res) =>
   res.send("Hello, Express & Bienvenue dans ce pokédex!😎")
 );
 
+// On retourne la liste des pokémons au format JSON, avec un message :
+app.get("/api/pokemons", (req, res) => {
+  const message = "La liste des pokémons a bien été récupérée.";
+  res.json(success(message, pokemons));
+});
+
 // On utilise la liste de pokémons dans notre point de terminaison
 app.get("/api/pokemons/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const pokemon = pokemons.find((pokemon) => pokemon.id === id);
   const message = "Un pokémon a bien été trouvé.";
   //deux param le msg descriptif confirmation & les données du pokémon
-  res.json(helper.success(message, pokemon));
-});
-
-// le nouveau point de terminaison , affichant le nombre total de pokémons :
-app.get("/api/pokemons", (req, res) => {
-  res.send(
-    `Il y a ${pokemons.length} pokémons dans le pokédex pour le moment.`
-  );
+  res.json(success(message, pokemon));
 });
 
 app.listen(port, () =>
