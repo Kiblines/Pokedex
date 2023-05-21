@@ -1,5 +1,6 @@
 const express = require("express");
 const { success, getUniqueId } = require("./helper");
+const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const favicon = require("serve-favicon");
 let pokemons = require("./mock-pokemon");
@@ -8,7 +9,10 @@ const app = express();
 const port = 3000;
 
 // pas besoin de next ici car morgan & serve favicon le gère en interne
-app.use(favicon(__dirname + "/favicon.ico")).use(morgan("dev"));
+app
+  .use(favicon(__dirname + "/favicon.ico"))
+  .use(morgan("dev"))
+  .use(bodyParser.json());
 
 app.get("/", (req, res) =>
   res.send("Hello, Express & Bienvenue dans ce pokédex!😎")
