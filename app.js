@@ -35,7 +35,7 @@ app.get("/api/pokemons/:id", (req, res) => {
 
 app.post("/api/pokemons", (req, res) => {
   const id = getUniqueId(pokemons);
-  const pokemonCreated = { ...req, body, ...{ id: id, created: new Date() } };
+  const pokemonCreated = { ...req.body, ...{ id: id, created: new Date() } };
   pokemons.push(pokemonCreated);
   const message = `le Pokémon ${pokemonCreated.name} a bien été ajouté au pokédex.`;
 });
